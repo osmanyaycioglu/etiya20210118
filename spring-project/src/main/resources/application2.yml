@@ -1,0 +1,9 @@
+server:
+  error:
+    include-binding-errors: always
+  	include-exception: true
+    include-message: always
+  forward-headers-strategy: native
+  http2:
+    enabled: false
+  port: 7070
