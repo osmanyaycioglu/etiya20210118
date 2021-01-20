@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.training.etiya.MyProScopeObj;
+import com.training.etiya.injection.ExecuteManager;
 
 @RestController
 @RequestMapping("/first")
@@ -15,6 +16,8 @@ import com.training.etiya.MyProScopeObj;
 @SessionScope
 public class FirstRest {
 
+    @Autowired
+    private ExecuteManager eManager;
 
     public FirstRest() {
         System.out.println("FirstRest Constructor");
@@ -22,6 +25,11 @@ public class FirstRest {
 
     @Autowired
     private MyProScopeObj myProScopeObj;
+
+    @GetMapping("/execute")
+    public String execute() {
+        return this.eManager.executeMe();
+    }
 
     @GetMapping("/get")
     public String get() {
