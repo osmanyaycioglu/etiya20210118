@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertyReadEngine {
 
-    public Object readPropery(final Class<?> clzzParam) {
+    public <T> T readPropery(final Class<T> clzzParam) {
         try {
             PropFile propFileLoc = clzzParam.getAnnotation(PropFile.class);
             if (propFileLoc != null) {
@@ -16,7 +16,7 @@ public class PropertyReadEngine {
                 FileInputStream fileInputStreamLoc = new FileInputStream(file);
                 propertiesLoc.load(fileInputStreamLoc);
 
-                Object newInstanceLoc = clzzParam.newInstance();
+                T newInstanceLoc = clzzParam.newInstance();
 
                 Field[] declaredFieldsLoc = clzzParam.getDeclaredFields();
                 for (Field fieldLoc : declaredFieldsLoc) {

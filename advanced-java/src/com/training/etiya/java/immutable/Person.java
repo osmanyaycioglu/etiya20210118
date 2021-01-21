@@ -1,7 +1,7 @@
 package com.training.etiya.java.immutable;
 
 
-public class Person {
+public class Person implements Comparable<Person> {
 
     private final String name;
     private final String surname;
@@ -55,6 +55,12 @@ public class Person {
 
     public String getPhone() {
         return this.phone;
+    }
+
+
+    @Override
+    public int compareTo(final Person oParam) {
+        return 0;
     }
 
 
