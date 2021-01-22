@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -66,6 +67,9 @@ public class Employee {
                },
                mappedBy = "employee")
     private List<Phone> phoneList;
+
+    @Version
+    private int         abd;
 
     public String getName() {
         return this.name;
@@ -133,6 +137,14 @@ public class Employee {
 
     public void setPhoneList(final List<Phone> phoneListParam) {
         this.phoneList = phoneListParam;
+    }
+
+    public int getAbd() {
+        return this.abd;
+    }
+
+    public void setAbd(final int abdParam) {
+        this.abd = abdParam;
     }
 
 
