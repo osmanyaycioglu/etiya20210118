@@ -1,5 +1,7 @@
 package com.training.etiya;
 
+import java.util.concurrent.Future;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -8,6 +10,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+import com.training.etiya.rest.async.AsyncService;
 
 //@SpringBootApplication(scanBasePackages = {
 //                                            "com.training.etiya",
@@ -15,6 +20,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 //})
 @SpringBootApplication
 @ServletComponentScan
+@EnableAsync
 public class SpringProjectApplication implements ApplicationRunner {
 
     @Autowired
@@ -27,6 +33,8 @@ public class SpringProjectApplication implements ApplicationRunner {
 
     private MyProScopeObj       myProScopeObj2;
 
+    @Autowired
+    private AsyncService        as;
 
     @Autowired
     public SpringProjectApplication(final MyProScopeObj ObjProScopeObjParam) {
@@ -53,6 +61,9 @@ public class SpringProjectApplication implements ApplicationRunner {
     public void run(final ApplicationArguments argsParam) throws Exception {
         System.out.println(this.person);
         System.out.println("Equals : " + (this.myProScopeObj == this.person.getMyProScopeObj()));
+        Future<String> myMethodLoc = this.as.myMethod(100);
+        // Extra Processes
+        String stringLoc = myMethodLoc.get();
 
 
     }
